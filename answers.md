@@ -7,4 +7,4 @@
     d) for (int k = 0; k < cIndexes.size(); k++) {
         System.out.println(cIndexes.get(k));
     }
-    e) anotherPlayIsPossible, isLegal, as otherwise you will be checking null values.
+    e) anotherPlayIsPossible, as otherwise you will be checking null values.
