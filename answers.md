@@ -1,0 +1,3 @@
+1. they have the same concept and basic rules, they work on groups of cards that add up to certain values, they have different sizes, chances of winning, and groups that work
+2. extends, they are overwritten and assigned values in ElevensBoard, they are extended from the Board parent class
+3. isLegal, anotherPlayIsPossible, they do, as the main differences of the game lie in the legal groups and pairs that can be selected.
