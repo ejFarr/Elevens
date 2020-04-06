@@ -53,7 +53,13 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.size() == 2) {
+			return containsPairSum11(selectedCards);
+		}
+		else if (selectedCards.size() == 3) {
+			return containsJQK(selectedCards);
+		}
+		return false;
 	}
 
 	/**
@@ -66,7 +72,11 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		List<Integer> indexes = cardIndexes();
+		if (!containsPairSum11(indexes)) {
+			return containsJQK(indexes);
+		}
+		return true;
 	}
 
 	/**
@@ -78,7 +88,19 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.size() < 2) {
+			return false;
+		}
+		for (int k = 0; k < selectedCards.size() - 1; k++) {
+			int card1 = selectedCards.get(k).intValue();
+			for (int i = k + 1; i < selectedCards.size(); i++) {
+				int card2 = selectedCards.get(i).intValue();
+				if (cardAt(card1).pointValue() + cardAt(card2).pointValue() == 11) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -90,6 +112,20 @@ public class ElevensBoard extends Board {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		boolean haveJack = false;
+		boolean haveQueen = false;
+		boolean haveKing = false;
+		for (int k = 0; k < selectedCards.size(); k++) {
+			if (cardAt(selectedCards.get(k)).rank() == "jack") {
+				haveJack = true;
+			}
+			else if (cardAt(selectedCards.get(k)).rank() == "queen") {
+				haveQueen = true;
+			}
+			else if (cardAt(selectedCards.get(k)).rank() == "king") {
+				haveKing = true;
+			}
+		}
+		return haveJack && haveQueen && haveKing;
 	}
 }
